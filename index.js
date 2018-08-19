@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
-const { prefix: p } = require('./config.json')
 const Canvas = require('canvas')
 require('dotenv').config()
+const data = require('./data.js').data
 
 const client = new Discord.Client()
 
@@ -19,14 +19,13 @@ const addPicture = async (attachmentPath, attachmentName, attachmentTitle, messa
 }
 
 client.on('message', message => {
-    if (message.content === `${p}ismarkgay`) {
-        message.channel.send('YES!');
+    let commandObject = data.find(command => command.command === message.content)
+    if (commandObject) {
+        addPicture(commandObject.path, commandObject.path, commandObject.title, message, commandObject.width, commandObject.height)
     }
-    else if (message.content === `${p}picture`) {
-        addPicture('./wallpaper.jpg', 'welcome-image1.png', 'This is working!', message, 700, 400)
-    }
-    else if (message.content === `${p}zulrah-void`) {
-        addPicture('./zulrah-void.png', './zulrah-void.png', "So, you think you're ready to take on Zulrah?", message, 1293, 753)
+    else if (message.content === '!commands') {
+        let listOfCommands = data.map(command => command.command)
+        message.channel.send(`My commands are:\n${listOfCommands.join('\n')}`)
     }
 })
 
