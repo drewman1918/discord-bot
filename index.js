@@ -23,7 +23,7 @@ client.on('message', message => {
     if (commandObject) {
         addPicture(commandObject.path, commandObject.path, commandObject.title, message, commandObject.width, commandObject.height)
     }
-    else if (message.content === '!commands') {
+    else if (message.content === '!setups') {
         let listOfCommands = data.map(command => command.command)
         message.channel.send(`My commands are:\n${listOfCommands.join('\n')}`)
     }
