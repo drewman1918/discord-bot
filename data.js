@@ -52,7 +52,7 @@ module.exports = {
         {
             command: '!vetion',
             path: './assets/vetion.png',
-            title: "Giant spiders? Count me out.",
+            title: "This guy is a skeleton, not a spider. Just FYI.",
             height: 464,
             width: 756
         },
