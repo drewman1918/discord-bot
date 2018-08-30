@@ -6,7 +6,8 @@ const data = require('./data.js').data
 const client = new Discord.Client()
 
 client.on('ready', () => {
-  console.log('How may I serve you?')
+    console.log('How may I serve you?')
+    client.user.setGame('Try !setups')
 })
 
 const addPicture = async (attachmentPath, attachmentName, attachmentTitle, message, width, height) => {
