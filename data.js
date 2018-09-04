@@ -58,6 +58,13 @@ module.exports = {
         },
         {
             command: '!raids-solo',
+            path: './assets/raids-solo(alt).png',
+            title: "Alright, Woox, go show us how it's done!",
+            height: 464,
+            width: 756
+        },
+        {
+            command: '!raids-solo-void',
             path: './assets/raids-solo.png',
             title: "Alright, Woox, go show us how it's done!",
             height: 464,
