@@ -29,6 +29,13 @@ module.exports = {
             width: 755
         },
         {
+            command: '!corp',
+            path: './assets/corp.png',
+            title: "Waiting for <@278058169534644224> to tell me what to say! (We could put extra info here instead of taglines also)",
+            height: 462,
+            width: 755
+        },
+        {
             command: '!dks-task',
             path: './assets/dks-task.jpg',
             title: "Waiting for <@278058169534644224> to tell me what to say! (We could put extra info here instead of taglines also)",
