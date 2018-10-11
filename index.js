@@ -19,6 +19,10 @@ const addPicture = async (attachmentPath, attachmentName, attachmentTitle, messa
     message.channel.send(attachmentTitle, attachment)
 }
 
+const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 client.on('message', message => {
     let commandObject = data.find(command => command.command === message.content)
     if (commandObject) {
@@ -27,6 +31,35 @@ client.on('message', message => {
     else if (message.content === '!setups') {
         let listOfCommands = data.map(command => command.command)
         message.channel.send(`My commands are:\n${listOfCommands.join('\n')}`)
+    } else if (message.content.startsWith('!tanksplit')) {
+        let command = message.content.replace(/\s/g, '');
+        
+        let numbers = command.split('!tanksplit')[1].trim()
+
+        let amount = numbers.split('/')[0]
+        let n = numbers.split('/')[1]
+        
+        if (amount.includes('k')) {
+            amount = Number(amount.split('').filter(letter => letter !== 'k').join('')) * 1000
+        } else if (amount.includes('K')) {
+            amount = Number(amount.split('').filter(letter => letter !== 'K').join('')) * 1000
+        } else if (amount.includes('m')) {
+            amount = Number(amount.split('').filter(letter => letter !== 'm').join('')) * 1000000
+        } else if (amount.includes('M')) {
+            amount = Number(amount.split('').filter(letter => letter !== 'M').join('')) * 1000000
+        }
+
+        amount = Number(amount)
+        n = Number(n)
+        let avg = amount / n
+
+        let tankSplit = Math.round(avg + (amount * 0.1))
+        let normalSplit = Math.round((amount - tankSplit) / (n - 1))
+
+        tankSplit = numberWithCommas(tankSplit)
+        normalSplit = numberWithCommas(normalSplit)
+        
+        message.channel.send(`Tank Split: ${tankSplit}\nNormal Split: ${normalSplit}`)
     }
 })
 
